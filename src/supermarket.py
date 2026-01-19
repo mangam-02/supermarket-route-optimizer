@@ -23,7 +23,7 @@ class Grid:
         elif grid_size is not None:
             self.create_grid(grid_size)
 
-    def plot(self, person_path = []):
+    def plot(self, person_path:list = [], saving_path:str = None):
         grid = self.grid
         fig, ax = plt.subplots(figsize=(6, 6))
         rows, cols = grid.shape
@@ -116,7 +116,8 @@ class Grid:
                 Line2D([0], [0], color=col, lw=1.8, label=f"{name}")
             )
         ax.legend(handles=legend_elements, bbox_to_anchor=(1.02, 1),loc="upper left")
-
+        if saving_path is not None:
+            plt.savefig(saving_path, bbox_inches="tight", dpi=300)
         #plt.show()
 
     def save(self, save_path):
