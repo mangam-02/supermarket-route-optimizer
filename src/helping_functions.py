@@ -13,12 +13,12 @@ def plot_costs(list_of_costs, shopping_list, saving_path=None):
     mean_cost = np.mean(list_of_costs)
     std_cost = np.std(list_of_costs)
 
-    ## FIT
-    # x-Werte für die Kurve
-    x = np.linspace(min_cost, max_cost, 200)
-    # y-Werte für die Gauß-Kurve
-    y = norm.pdf(x, loc=mean_cost, scale=std_cost) * len(list_of_costs) * 2  # *2 wegen bin-width=2
-    plt.plot(x, y, color='orange', linewidth=2, label='Normal Fit')
+    # ## FIT
+    # # x-Werte für die Kurve
+    # x = np.linspace(min_cost, max_cost, 200)
+    # # y-Werte für die Gauß-Kurve
+    # y = norm.pdf(x, loc=mean_cost, scale=std_cost) * len(list_of_costs) * 2  # *2 wegen bin-width=2
+    # plt.plot(x, y, color='orange', linewidth=2, label='Normal Fit')
 
 
 
