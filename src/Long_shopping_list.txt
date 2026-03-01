@@ -1,0 +1,27 @@
+Flowers,Promotion,1,1
+Apple,Fruits,1,2
+Banana,Fruits,1,1
+Carrot,Vegetables,1,3
+Broccoli,Vegetables,2,2
+Water,Water,4,5
+Soy Milk,Vegan Products,2,3
+Lasagna,Ready Meals,3,4
+Cashews,Nuts,1,4
+Almonds,Nuts,1,4
+Tuna,Canned Goods,3,5
+Cheddar,Cheese,2,3
+Mozzarella,Cheese,2,2
+Salmon,Fish,3,3
+Chicken Breast,Meat/Cold Cuts,3,2
+Sausage,Meat/Cold Cuts,3,4
+Tabasco,Spices,1,5
+Croissant,Bakery,1,1
+Baguette,Bakery,2,2
+Beer,Alcohol,5,5
+Spezi,Beverages,3,5
+Orange Juice,Juices,3,5
+Toiletpaper,Household,2,1
+Cracker,Snacks,1,2
+Chocolate,Chocolate,2,3
+Frozen Burritos,Frozen Meals,3,4
+Pizza,Frozen Pizzas,3,4

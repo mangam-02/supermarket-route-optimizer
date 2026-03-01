@@ -1,0 +1,6 @@
+Cheddar,Cheese,2,3
+Cashews,Nuts,1,4
+Penne,Pasta,1,2
+Pizza,Frozen Meals,3,4
+Bandnudeln,Pasta,1,2
+Blumen,Promotion,1,1

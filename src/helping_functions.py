@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import norm
 
 
-def plot_costs(list_of_costs, shopping_list, saving_path=None):
+def plot_costs(list_of_costs, shopping_list = None, saving_path=None):
     fig = plt.figure(figsize=(10,6))
 
     # Bins mit Breite 2
@@ -29,9 +29,11 @@ def plot_costs(list_of_costs, shopping_list, saving_path=None):
     
     # Anzahl der Datenpunkte
     m_data = len(list_of_costs)
-    n = len(shopping_list)
-
-    plt.title(f"Distribution of Best Order Costs (m = {m_data}) (n = {n})", fontsize=16, fontweight="bold")
+    title = f"Distribution of Best Order Costs (m = {m_data})"
+    if shopping_list:
+        n = len(shopping_list)
+        title += f" (n = {n})"
+    plt.title(title, fontsize=16, fontweight="bold")
     plt.xlabel("Order Cost (Time)", fontsize=14)
     plt.ylabel("Frequency", fontsize=14)
     plt.grid(True, linestyle="--", alpha=0.5)
