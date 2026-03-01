@@ -15,6 +15,16 @@ class ShoppingList:
 
     def add_product(self, product: Product):
         self.products.append(product)
+        self.create_product_indizes_dict()
+    
+    def create_product_indizes_dict(self):
+        # Create a mapping from shopping list item names to their indices in the matrices.
+        # 0 -> start
+        # 1 -> first product
+        # len(shopping_list) -> last product
+        # len(shopping_list) + 1 -> end
+        product_indizes = {prod.name: idx + 1 for idx, prod in enumerate(self.products)}
+        self.product_indizes = product_indizes
 
     @classmethod
     def from_dict(cls, product_dict):
@@ -29,6 +39,7 @@ class ShoppingList:
                     hardness=props["hardness"]
                 )
             )
+        shopping_list.create_product_indizes_dict()
         return shopping_list
 
     def save_to_file(self, filename):
@@ -52,6 +63,7 @@ class ShoppingList:
                     weight=int(weight),
                     hardness=int(hardness)
                 ))
+        shopping_list.create_product_indizes_dict()
         return shopping_list
 
     def __len__(self):
