@@ -141,4 +141,45 @@ def compute_timecost_from_middle_indices_order(middle_indices_order, product_cos
         total_cost += product_cost_matrix[order[i], order[i+1]]
     return total_cost
 
+def local_search(J_product, printing = False, compute_neighbours_func = order_functions.compute_neighbours1, start_order = None):
+    if printing:
+        print("Starting local search:")
+    number_of_products = J_product.shape[0]-2
 
+    # If no start-order is given, create a random start-order
+    if start_order is None:
+        best_order = order_functions.generate_random_order(number_of_products)
+        #best_order = get_complete_order(best_order, 0, number_of_products + 1)
+    else:
+        best_order = start_order
+        #if best_order[0] != 0:
+            #best_order = get_complete_order(best_order, 0, number_of_products + 1)
+    
+    no_better_order = True
+    epoch = 1
+    while no_better_order:
+        # print(f"Epoch: {epoch}")
+        # print(best_order)
+        epoch += 1
+        best_order_cost = compute_timecost_from_middle_indices_order(best_order, J_product)
+        neighbours = compute_neighbours_func(best_order)
+        #print(neighbours)
+        neighbours_cost = [compute_timecost_from_middle_indices_order(neighbour, J_product) for neighbour in neighbours]
+        best_neighbour_cost = min(neighbours_cost)
+        if best_neighbour_cost < best_order_cost:
+            best_neighbour_index = neighbours_cost.index(best_neighbour_cost)
+            best_order = neighbours[best_neighbour_index]
+            best_order_cost = best_neighbour_cost
+        else:
+            no_better_order = False
+            if printing:
+                print(f"No better neighbour found after {epoch} epochs")
+                print(f"Best Order: {best_order}")
+                print(f"Best Cost: {best_order_cost}")
+                print()
+    return best_order, best_order_cost
+
+def GRASP(J_product, compute_neighbours_func, alpha = 0.5):
+    start_order = order_functions.generate_distancegreedy_random_order(J_product, alpha)
+    best_order, best_order_cost = local_search(J_product, compute_neighbours_func=compute_neighbours_func, start_order=start_order)
+    return best_order, best_order_cost
