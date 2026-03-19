@@ -96,12 +96,35 @@ class Grid:
                             ax.plot([x0 + offset, x1 + offset], [y0, y1],
                                     linewidth=1.8, color=col)
 
-        if person_path is not []:
-            for path in person_path:
-                path_x = [c + 0.5 for r, c in path]  # +0.5 für Zellmitte
-                path_y = [grid.shape[0] - 1 - r + 0.5 for r, c in path]  # matplotlib y-Umkehr
-                ax.plot(path_x, path_y, linewidth=2, linestyle="--")
+        if person_path:  # nur, wenn ein Pfad existiert
+            import matplotlib.cm as cm
+            import matplotlib.colors as mcolors
 
+            cmap = cm.viridis
+            total_segments = sum(len(path)-1 for path in person_path)  # alle Segmente
+            seg_idx = 0  # globaler Segmentzähler
+
+            for path in person_path:
+                path_x = [c + 0.5 for r, c in path]
+                path_y = [grid.shape[0] - 1 - r + 0.5 for r, c in path]
+
+                n = len(path_x)
+                for i in range(n - 1):
+                    color = cmap(seg_idx / total_segments)
+                    ax.plot([path_x[i], path_x[i + 1]], [path_y[i], path_y[i + 1]],
+                            color=color, linewidth=2, linestyle="--")
+                    seg_idx += 1
+
+            # Horizontal Colorbar unterhalb des Plots
+            norm = mcolors.Normalize(vmin=0, vmax=total_segments)
+            sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+            sm.set_array([])
+
+            cbar = fig.colorbar(sm, ax=ax, orientation="horizontal",
+                                fraction=0.046, pad=0.01)
+            cbar.set_label("Progress along path")
+            cbar.set_ticks([0, total_segments])
+            cbar.set_ticklabels(["start", "end"])
         # Achsen konfigurieren
         ax.set_aspect("equal")
         ax.set_xlim(0, cols)
