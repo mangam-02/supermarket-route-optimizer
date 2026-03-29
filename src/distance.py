@@ -5,7 +5,8 @@ import astar
 from shopping_list import ShoppingList
 from shopping_list import Product
 import order_functions
-import helping_functions
+import random
+import distance
 
 def compute_product_types_dict(grid:Grid, start_cell, end_cell):
     """
@@ -141,6 +142,27 @@ def compute_timecost_from_middle_indices_order(middle_indices_order, product_cos
         total_cost += product_cost_matrix[order[i], order[i+1]]
     return total_cost
 
+def generate_distancegreedy_random_order(J_product, alpha):
+    J = J_product.copy()
+    number_of_products = J.shape[0] - 2
+    end_index = number_of_products + 1
+
+    order = []
+    current_index = 0
+    for i in range(number_of_products):
+        J_without_invalid_values = [J[current_index][j] for j in range(len(J[current_index])) if (j not in order) and (j != 0 and j != end_index)]# and (j != end_index)]
+        minimum_cost = min(J_without_invalid_values)
+        maximum_cost = max(J_without_invalid_values)
+        cutoff_value = minimum_cost + alpha * (maximum_cost-minimum_cost)
+
+        RCL_template = J[current_index] <= cutoff_value
+        indizes = [j for j in range(len(RCL_template)) if RCL_template[j] and (j not in order) and (j != 0 and j != end_index)]# and (j != end_index)]
+        winner_index = random.choice(indizes)
+
+        order.append(winner_index)
+        current_index = order[-1]
+    return order
+
 def local_search(J_product, printing = False, compute_neighbours_func = order_functions.compute_neighbours1, start_order = None):
     if printing:
         print("Starting local search:")
@@ -180,6 +202,6 @@ def local_search(J_product, printing = False, compute_neighbours_func = order_fu
     return best_order, best_order_cost
 
 def GRASP(J_product, compute_neighbours_func, alpha = 0.5):
-    start_order = order_functions.generate_distancegreedy_random_order(J_product, alpha)
+    start_order = distance.generate_distancegreedy_random_order(J_product, alpha)
     best_order, best_order_cost = local_search(J_product, compute_neighbours_func=compute_neighbours_func, start_order=start_order)
     return best_order, best_order_cost

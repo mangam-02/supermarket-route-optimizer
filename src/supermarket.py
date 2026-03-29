@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from matplotlib.lines import Line2D
-import helping_functions
+import plotting
 
 class Zelle:
     def __init__(self, row, column, width, height, N, E, S, W):
@@ -141,7 +141,7 @@ class Grid:
             )
         ax.legend(handles=legend_elements, bbox_to_anchor=(1.02, 1),loc="upper left")
         if saving_path is not None:
-            saving_path = helping_functions.check_saving_path(saving_path)
+            saving_path = plotting.check_saving_path(saving_path)
             plt.savefig(saving_path, bbox_inches="tight", dpi=300)
         #plt.show()
 

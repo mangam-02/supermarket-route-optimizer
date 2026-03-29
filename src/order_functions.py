@@ -15,27 +15,6 @@ def generate_random_order(number_of_products:int):
     random.shuffle(order)
     return order
 
-def generate_distancegreedy_random_order(J_product, alpha):
-    J = J_product.copy()
-    number_of_products = J.shape[0] - 2
-    end_index = number_of_products + 1
-
-    order = []
-    current_index = 0
-    for i in range(number_of_products):
-        J_without_invalid_values = [J[current_index][j] for j in range(len(J[current_index])) if (j not in order) and (j != 0 and j != end_index)]# and (j != end_index)]
-        minimum_cost = min(J_without_invalid_values)
-        maximum_cost = max(J_without_invalid_values)
-        cutoff_value = minimum_cost + alpha * (maximum_cost-minimum_cost)
-
-        RCL_template = J[current_index] <= cutoff_value
-        indizes = [j for j in range(len(RCL_template)) if RCL_template[j] and (j not in order) and (j != 0 and j != end_index)]# and (j != end_index)]
-        winner_index = random.choice(indizes)
-
-        order.append(winner_index)
-        current_index = order[-1]
-    return order
-
 def compute_neighbours1(order):
     neighbour_orders = []
     for i in range(len(order)-1):
