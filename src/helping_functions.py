@@ -1,7 +1,18 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
+import os
 
+def check_saving_path(saving_path: str) -> str:
+    """
+    Prüft den saving_path:
+    - Wenn saving_path keinen Unterordner enthält, wird er zu assets/figures/ verschoben.
+    - Andernfalls bleibt er unverändert.
+    """
+    if os.path.dirname(saving_path) == "":
+        os.makedirs("assets/figures", exist_ok=True)
+        saving_path = os.path.join("assets/figures", saving_path)
+    return saving_path
 
 def plot_costs(list_of_costs, shopping_list = None, saving_path=None):
     fig = plt.figure(figsize=(10,6))
@@ -49,6 +60,7 @@ def plot_costs(list_of_costs, shopping_list = None, saving_path=None):
     plt.tight_layout()
     
     if saving_path is not None:
+        saving_path = check_saving_path(saving_path)
         plt.savefig(saving_path, bbox_inches="tight", dpi=300)
     
     return mean_cost, std_cost
