@@ -30,9 +30,9 @@ The following Python packages are required (installable via `pip`):
    ```
    source venv/bin/activate
    ```
-3. Install dependencies:
+3. Install dependencies from requirements.txt:
    ```
-   pip install numpy matplotlib
+   pip install -r requirements.txt
    ```
 4. Start Jupyter Notebook:
    ```
