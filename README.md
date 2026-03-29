@@ -1,5 +1,7 @@
 # Multi-Criteria Optimization for Shopping Lists in Supermarkets
 
+![Pareto Evolution](src/assets/pareto_evolution.gif)
+
 ## Description
 
 This project is part of the course "Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design" at the Technical University Munich (TUM). It implements algorithms to optimize shopping lists in a simulated supermarket grid. The goal is to find the best order of products that minimizes multiple criteria:
