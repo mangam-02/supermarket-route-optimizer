@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from matplotlib.lines import Line2D
 import plotting
+import os
 
 class Zelle:
     def __init__(self, row, column, width, height, N, E, S, W):
@@ -146,6 +147,16 @@ class Grid:
         #plt.show()
 
     def save(self, save_path):
+        # Default folder
+        default_dir = "supermarket-grids"
+        
+        # If no subdirectory specified → use default_dir
+        if "/" not in save_path and "\\" not in save_path:
+            save_path = os.path.join(default_dir, save_path)
+        
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
         grid = self.grid
         text = ""
         grid_shape = grid.shape

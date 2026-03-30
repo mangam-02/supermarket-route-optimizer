@@ -1,3 +1,4 @@
+import os
 class Product:
     def __init__(self, name, category, weight, hardness):
         self.name = name
@@ -44,6 +45,14 @@ class ShoppingList:
 
     def save_to_file(self, filename):
         """Speichert die ShoppingList in eine .txt Datei."""
+        # Default folder name
+        default_dir = "shopping-lists"
+        # If no subdirectory is specified → prepend default_dir
+        if "/" not in filename and "\\" not in filename:
+            filename = os.path.join(default_dir, filename)
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+
         with open(filename, "w", encoding="utf-8") as f:
             for p in self.products:
                 f.write(f"{p.name},{p.category},{p.weight},{p.hardness}\n")
