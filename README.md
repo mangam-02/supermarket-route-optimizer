@@ -60,22 +60,31 @@ The following Python packages are required (installable via `pip`):
 ## Project Structure
 
 ```
-src/
-├── astar.py                    # A* algorithm for pathfinding
-├── distance.py                 # Calculation of distances and costs
-├── grid_eng.txt                # English version of the supermarket grid
-├── grid.txt                    # German version of the supermarket grid
-├── helping_functions.py        # Helper functions
-├── Long_shopping_list.txt      # Long example shopping list
-├── main.ipynb                  # Main notebook for single objective optimization
-├── order_functions.py          # Functions for orders and mutations
-├── shopping_list.py            # Class for shopping lists
-├── small_shopping_list.txt     # Short example shopping list
-├── supermarket.py              # Class for the supermarket grid
-├── weight_hardness_optimization.ipynb  # Main optimization notebook
-├── creating_supermarket_grid.ipynb     # Notebook for creating the grid
-├── create_example_shopping_lists.ipynb # Notebook for shopping lists
-└── __pycache__/               # Python cache
+src
+├── order_functions.py           # Functions to handle order processing
+├── evolution.py                 # Main evolution algorithm logic
+├── evolution_2d.py              # 2D-specific evolution routines
+├── evolution_3d.py              # 3D-specific evolution routines
+├── plotting.py                  # Functions for plotting results
+├── optimization_1d.ipynb        # 1D optimization experiments
+├── optimization_2d.ipynb        # 2D optimization experiments
+├── optimization_3d.ipynb        # 3D optimization experiments
+├── create_shopping_lists.ipynb  # Scripts to generate shopping lists
+├── create_supermarket_grid.ipynb # Script to create supermarket grid
+├── hardness.py                  # Functions for item hardness metrics
+├── weight.py                     # Weight calculation utilities
+├── distance.py                   # Distance calculation utilities
+├── shopping_list.py              # Shopping list management
+├── astar.py                      # A* pathfinding algorithm
+├── decision_making.py            # Decision-making logic for agents
+├── supermarket.py                # Supermarket environment definition
+├── Long_shopping_list.txt        # Example long shopping list
+├── small_shopping_list.txt       # Example small shopping list
+├── grid.txt                       # Grid definition for tests
+├── grid_eng.txt                   # Grid definition (English version)
+└── assets                        # Images and gifs
+    ├── pareto_evolution.gif      # Example Pareto evolution animation
+    └── figures                   # Folder containing plot figures
 ```
 
 ## Algorithms and Methods
