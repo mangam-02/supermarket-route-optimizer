@@ -1,7 +1,7 @@
 import numpy as np
 from supermarket import Zelle
 from supermarket import Grid
-import astar
+import astar as astar
 from shopping_list import ShoppingList
 from shopping_list import Product
 import order_functions
