@@ -4,115 +4,144 @@
 
 ## Description
 
-This project is part of the course "Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design" at the Technical University Munich (TUM). It implements algorithms to optimize shopping lists in a simulated supermarket grid. The goal is to find the best order of products that minimizes multiple criteria:
+Dieses Projekt ist Teil der Vorlesung "Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design" an der TUM. Es implementiert Algorithmen zur Optimierung von Einkaufslisten in einem simulierten Supermarkt-Grid und betrachtet mehrere Zielfunktionen gleichzeitig (z. B. Distanz, Gewicht, Hardness).
 
-- **Distance Cost**: The total length of the path through the supermarket.
-- **Weight Cost**: Avoiding crushing by wrong stacking (heavy products at the bottom).
-- **Hardness**: Similar to weight, but based on product hardness.
+## Installation und Requirements
 
-The optimization uses heuristics like GRASP, evolutionary algorithms, and Pareto ranking for multi-objective optimization.
+### Voraussetzungen
+- Python 3.x
+- Jupyter Notebook (optional)
+
+### Abhängigkeiten
+Installiere die Abhängigkeiten mit:
+
+```
+pip install -r requirements.txt
+```
+
+### Setup
+1. Repository klonen oder entpacken
+2. Virtuelle Umgebung aktivieren (optional):
+```
+source venv/bin/activate
+```
+3. Abhängigkeiten installieren (s.o.)
+````markdown
+# Multi-Criteria Optimization for Shopping Lists in Supermarkets
+
+![Pareto Evolution](src/assets/figures/pareto_evolution.gif)
+
+## Description
+
+This repository contains code for multi-criteria optimization of shopping lists in a simulated supermarket grid. It was developed for the course "Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design" (TUM). The goal is to find product pickup orders that balance multiple objectives such as travel distance, stacking/weight constraints, and product hardness.
 
 ## Installation and Requirements
 
 ### Prerequisites
 - Python 3.x
-- Jupyter Notebook (for interactive notebooks)
+- Jupyter Notebook (optional)
 
 ### Dependencies
-The following Python packages are required (installable via `pip`):
-- numpy
-- matplotlib
-- (additional from imports if necessary)
+Install required Python packages with:
+
+```
+pip install -r requirements.txt
+```
 
 ### Setup
 1. Clone or download the repository.
-2. Activate the virtual environment (if available):
-   ```
-   source venv/bin/activate
-   ```
-3. Install dependencies from requirements.txt:
-   ```
-   pip install -r requirements.txt
-   ```
-4. Start Jupyter Notebook:
-   ```
-   jupyter notebook
-   ```
+2. (Optional) Activate a virtual environment:
 
-## Usage
+```
+source venv/bin/activate
+```
 
-### Main Notebooks
-- `weight_hardness_optimization.ipynb`: The central notebook for multi-objective optimization. It loads the supermarket grid and shopping list, runs the evolution, and visualizes the Pareto fronts.
-- `main.ipynb`: For single objective optimization experiments.
-- `create_example_shopping_lists.ipynb`: For creating example shopping lists.
-- `creating_supermarket_grid.ipynb`: For creating the supermarket grid.
+3. Install dependencies as shown above.
+4. Start Jupyter Notebook if you want to run the notebooks interactively:
 
-### Example Execution
-1. Open `weight_hardness_optimization.ipynb` in Jupyter.
-2. Run the cells to load the grid and list.
-3. Start the evolution for 2D (Distance + Weight) or 3D (Distance + Weight + Hardness).
-4. Visualize the results and the optimal path.
+```
+jupyter notebook
+```
 
-### Data
-- `grid.txt` / `grid_eng.txt`: The supermarket grid.
-- `Long_shopping_list.txt` / `small_shopping_list.txt`: Example shopping lists.
+## Notebooks and Examples
+Key notebooks located in `src/`:
+- `optimization_1d.ipynb`
+- `optimization_2d.ipynb`  (contains simulated annealing and Pareto visualizations)
+- `optimization_3d.ipynb`
+- `create_shopping_lists.ipynb`
+- `create_supermarket_grid.ipynb`
+
+To run: open the notebook and execute cells in order. `optimization_2d.ipynb` demonstrates 2D optimization (distance vs. weight) and plotting utilities.
+
+## Data
+- Supermarket grids: `src/supermarket-grids/grid.txt`, `src/supermarket-grids/grid_eng.txt`
+- Shopping lists: `src/shopping-lists/Long_shopping_list.txt`, `src/shopping-lists/small_shopping_list.txt`
 
 ## Project Structure
 
 ```
-src
-├── order_functions.py           # Functions to handle order processing
-├── evolution.py                 # Main evolution algorithm logic
-├── evolution_2d.py              # 2D-specific evolution routines
-├── evolution_3d.py              # 3D-specific evolution routines
-├── plotting.py                  # Functions for plotting results
-├── optimization_1d.ipynb        # 1D optimization experiments
-├── optimization_2d.ipynb        # 2D optimization experiments
-├── optimization_3d.ipynb        # 3D optimization experiments
-├── create_shopping_lists.ipynb  # Scripts to generate shopping lists
-├── create_supermarket_grid.ipynb # Script to create supermarket grid
-├── hardness.py                  # Functions for item hardness metrics
-├── weight.py                     # Weight calculation utilities
-├── distance.py                   # Distance calculation utilities
-├── shopping_list.py              # Shopping list management
-├── astar.py                      # A* pathfinding algorithm
-├── decision_making.py            # Decision-making logic for agents
-├── supermarket.py                # Supermarket environment definition
-├── Long_shopping_list.txt        # Example long shopping list
-├── small_shopping_list.txt       # Example small shopping list
-├── grid.txt                       # Grid definition for tests
-├── grid_eng.txt                   # Grid definition (English version)
-└── assets                        # Images and gifs
-    ├── pareto_evolution.gif      # Example Pareto evolution animation
-    └── figures                   # Folder containing plot figures
+README.md
+requirements.txt
+src/
+├── astar.py
+├── assets/
+│   └── figures/
+├── create_shopping_lists.ipynb
+├── create_supermarket_grid.ipynb
+├── creating_gif.py
+├── decision_making.py
+├── distance.py
+├── evolution.py
+├── evolution_2d.py
+├── evolution_3d.py
+├── hardness.py
+├── hypervolume.py
+├── optimization_1d.ipynb
+├── optimization_2d.ipynb
+├── optimization_3d.ipynb
+├── order_functions.py
+├── plotting.py
+├── simulated_annealing_2d.py
+├── shopping_list.py
+├── supermarket.py
+├── shopping-lists/
+│   ├── Long_shopping_list.txt
+│   └── small_shopping_list.txt
+├── supermarket-grids/
+│   ├── grid.txt
+│   └── grid_eng.txt
+└── weight.py
+
+core/  (additional helper modules)
+
+assets/ (project-wide assets if needed outside `src`)
 ```
 
 ## Algorithms and Methods
 
-- **A***: For optimal pathfinding in the grid.
-- **GRASP (Greedy Randomized Adaptive Search Procedure)**: For generating initial solutions with randomization and local search.
-- **Local Search**: Used within GRASP to explore neighborhoods and improve solutions.
-- **Evolutionary Algorithms**: With selection, crossover, mutation, and Pareto ranking for population-based optimization.
-- **Greedy Heuristics**: Including weight-greedy, hardness-greedy, and distance-greedy algorithms for biased initial ordering.
-- **Random Search**: For generating diverse random orders in the population.
-- **Pareto Ranking**: For multi-objective optimization with crowding distance to maintain diversity.
-- **Hypervolume**: To measure the quality and convergence of the Pareto front.
+- A* for pathfinding inside the grid
+- GRASP and greedy heuristics for generating biased initial orders
+- Local search (swap operations) for neighborhood exploration
+- Evolutionary algorithms with Pareto ranking and crowding distance to maintain diversity
+- Hypervolume calculation to assess Pareto-front quality
 
 ## Visualization
 
-- 2D and 3D Pareto fronts with Matplotlib.
-- Path visualization in the supermarket grid.
-- Hypervolume plots for convergence.
+- 2D Pareto plots (Distance vs Weight)
+- 3D Pareto plots (Distance vs Weight vs Hardness)
+- Path visualization inside the supermarket grid
+- Hypervolume plots for convergence analysis
 
-## Authors
+## Author
 
 - Timo Matuszewski
 
 ## License
 
-This project is created for educational purposes within the course. Please use it accordingly.
+This project was developed for educational purposes. Please follow your institution's guidelines for reuse.
 
 ## Notes
 
-- The notebooks are commented in German.
-- For questions or improvements: Contact.
+- Most notebooks contain German comments and explanations.
+- If you have questions or suggestions, please get in touch.
+````
