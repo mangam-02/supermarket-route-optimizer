@@ -26,7 +26,7 @@ pip install -r requirements.txt
 source venv/bin/activate
 ```
 3. Abhängigkeiten installieren (s.o.)
-```
+
 
 ## Description
 
@@ -139,4 +139,3 @@ This project was developed for educational purposes. Please follow your institut
 
 - Most notebooks contain German comments and explanations.
 - If you have questions or suggestions, please get in touch.
-````
