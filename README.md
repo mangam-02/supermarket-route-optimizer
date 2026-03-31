@@ -4,32 +4,6 @@
 
 ## Description
 
-This project is part of the course “Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design” at TUM. It implements algorithms for optimizing shopping lists in a simulated supermarket grid and considers multiple objective functions simultaneously (e.g., distance, weight, hardness).
-
-## Installation und Requirements
-
-### Voraussetzungen
-- Python 3.x
-- Jupyter Notebook (optional)
-
-### Abhängigkeiten
-Installiere die Abhängigkeiten mit:
-
-```
-pip install -r requirements.txt
-```
-
-### Setup
-1. Repository klonen oder entpacken
-2. Virtuelle Umgebung aktivieren (optional):
-```
-source venv/bin/activate
-```
-3. Abhängigkeiten installieren (s.o.)
-
-
-## Description
-
 This repository contains code for multi-criteria optimization of shopping lists in a simulated supermarket grid. It was developed for the course "Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design" (TUM). The goal is to find product pickup orders that balance multiple objectives such as travel distance, stacking/weight constraints, and product hardness.
 
 ## Installation and Requirements
