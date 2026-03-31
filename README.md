@@ -112,8 +112,6 @@ src/
 │   └── grid_eng.txt
 └── weight.py
 
-core/  (additional helper modules)
-
 assets/ (project-wide assets if needed outside `src`)
 ```
 
