@@ -26,3 +26,24 @@ def remove_duplicates(population):
             seen.add(key)
             new_pop.append(ind)
     return new_pop
+
+def filter_best_pareto_rank(population, pareto_ranks, ranking, *cost_lists):
+    # ---- Pareto Rank 1 filtern ----
+    best_rank = min(pareto_ranks)
+    pareto_indices = [i for i, r in enumerate(pareto_ranks) if r == best_rank]
+
+    # Population filtern
+    population = [population[i] for i in pareto_indices]
+    pareto_ranks = [pareto_ranks[i] for i in pareto_indices]
+
+    # Ranking neu setzen
+    ranking = list(range(len(population)))
+
+    # Alle Cost-Listen filtern
+    filtered_costs = []
+    for costs in cost_lists:
+        filtered = [costs[i] for i in pareto_indices]
+        filtered_costs.append(filtered)
+
+    return population, pareto_ranks, ranking, *filtered_costs
+

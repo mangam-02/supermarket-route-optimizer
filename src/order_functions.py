@@ -44,3 +44,6 @@ def mutation(order):
     order[i], order[j] = order[j], order[i]
     return order
 
+def generate_random_neighbour(compute_neighbours_function, current_solution):
+    all_neighbours = compute_neighbours_function(current_solution)
+    return random.choice(all_neighbours)

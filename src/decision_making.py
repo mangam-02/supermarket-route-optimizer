@@ -1,6 +1,6 @@
 import numpy as np
 import shopping_list
-import evolution_3d
+import evolution
 import order_functions
 
 
@@ -23,7 +23,7 @@ def weighted_sum_for_list(cost_lists: list, weights:list):
 
 def summarize_results(population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs, weights, P_product, grid, shopping_list):
     # Filter Pareto-Rank 1
-    population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs = evolution_3d.filter_best_pareto_rank(population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs)
+    population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs = evolution.filter_best_pareto_rank(population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs)
 
 
     # Normalize Costs

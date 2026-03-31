@@ -252,16 +252,3 @@ def evolution_3d(shopping_list:ShoppingList, J_product, population_size = 100, g
 
     return population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs, hypervolume_list, reference_point
 
-def filter_best_pareto_rank(population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs):
-    # ---- Pareto Rank 1 filtern ----
-    best_rank = min(pareto_ranks)
-    pareto_indices = [i for i, r in enumerate(pareto_ranks) if r == best_rank]
-
-    population = [population[i] for i in pareto_indices]
-    weight_costs = [weight_costs[i] for i in pareto_indices]
-    hardness_costs = [hardness_costs[i] for i in pareto_indices]
-    distance_costs = [distance_costs[i] for i in pareto_indices]
-
-    pareto_ranks = [pareto_ranks[i] for i in pareto_indices]
-    ranking = list(range(len(population)))  # neues Ranking
-    return population, pareto_ranks, ranking, weight_costs, hardness_costs, distance_costs
