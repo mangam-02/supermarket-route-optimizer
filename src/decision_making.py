@@ -70,5 +70,5 @@ def summarize_results(population, pareto_ranks, ranking, weight_costs, hardness_
     print(f"Mean path length between each step: {np.mean(path_length_between_each_step)}")
 
     # Plot
-    saving_path = f"path_3d_d{distance_cost}_w{weight_cost}_h{hardness_cost}|d{weights[0]}_w{weights[1]}_h{weights[2]}.jpg"
+    saving_path = f"path_3d_d{distance_cost}_w{weight_cost}_h{hardness_cost}-d{weights[0]}_w{weights[1]}_h{weights[2]}.jpg"
     grid.plot(path, saving_path=saving_path)
