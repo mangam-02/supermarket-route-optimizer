@@ -4,7 +4,7 @@
 
 ## Description
 
-Dieses Projekt ist Teil der Vorlesung "Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design" an der TUM. Es implementiert Algorithmen zur Optimierung von Einkaufslisten in einem simulierten Supermarkt-Grid und betrachtet mehrere Zielfunktionen gleichzeitig (z. B. Distanz, Gewicht, Hardness).
+This project is part of the course “Multi-Criteria Optimization and Decision Analysis for Embedded Systems Design” at TUM. It implements algorithms for optimizing shopping lists in a simulated supermarket grid and considers multiple objective functions simultaneously (e.g., distance, weight, hardness).
 
 ## Installation und Requirements
 
@@ -26,10 +26,7 @@ pip install -r requirements.txt
 source venv/bin/activate
 ```
 3. Abhängigkeiten installieren (s.o.)
-````markdown
-# Multi-Criteria Optimization for Shopping Lists in Supermarkets
-
-![Pareto Evolution](src/assets/figures/pareto_evolution.gif)
+```
 
 ## Description
 
